@@ -1,42 +1,34 @@
 .hero-container {
+  background: url("../images/image1.png") center center/cover no-repeat;
   height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative; /* Ensure it can be positioned with z-index */
-  overflow: hidden; /* Ensure image doesn't get cut off */
-  margin-top: -80px; /* Move up to fill space under navbar */
-}
-
-.hero-container img {
-  position: absolute; /* Make image absolute to control its positioning */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensure it covers the entire section */
-  z-index: -1; /* Ensure it stays behind the content */
+  position: relative;
+  overflow: hidden;
+  margin-top: -80px;
 }
 
 .hero-container > h1, .hero-container > p {
-  position: relative; /* Ensure text stays above the image */
+  color: #fff;
+  position: relative;
   z-index: 1;
 }
 
 .hero-container > h1 {
-  color: #fff;
   font-size: 100px;
-  margin-top: -450px;
+  margin-top: -50px;
+  text-align: center;
 }
+
+
 
 .hero-container > p {
   margin-top: 8px;
-  color: #fff;
   font-size: 32px;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
-    'Lucida Sans', Arial, sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .hero-btns {
