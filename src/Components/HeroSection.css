@@ -1,5 +1,5 @@
-.hero-container {
-  background: url("../images/image1.png") center center/cover no-repeat;
+.user-input-container {
+  background: url("/images/HeroSection2.png") center center/cover no-repeat;
   height: 100vh;
   width: 100%;
   display: flex;
@@ -11,13 +11,13 @@
   margin-top: -80px;
 }
 
-.hero-container > h1, .hero-container > p {
+.user-input-container > h1, .user-input-container > p {
   color: #fff;
   position: relative;
   z-index: 1;
 }
 
-.hero-container > h1 {
+.user-input-container > h1 {
   font-size: 100px;
   margin-top: -50px;
   text-align: center;
@@ -25,7 +25,7 @@
 
 
 
-.hero-container > p {
+.user-input-container > p {
   margin-top: 8px;
   font-size: 32px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -40,19 +40,19 @@
 }
 
 @media screen and (max-width: 960px) {
-  .hero-container > h1 {
+  .user-input-container > h1 {
     font-size: 70px;
     margin-top: -150px;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .hero-container > h1 {
+  .user-input-container > h1 {
     font-size: 50px;
     margin-top: -100px;
   }
 
-  .hero-container > p {
+  .user-input-container > p {
     font-size: 30px;
   }
 
