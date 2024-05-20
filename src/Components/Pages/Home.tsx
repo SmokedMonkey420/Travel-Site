@@ -7,7 +7,11 @@ import Footer from "../Footer";
 function Home() {
   return (
     <>
-      <HeroSection />
+      <HeroSection
+        title="TouristSpotter"
+        subtitle="A Tourist Destination Recommender System"
+        backgroundImage="/images/HeroSection1.png"
+      />
       <Cards />
       <Footer />
     </>
