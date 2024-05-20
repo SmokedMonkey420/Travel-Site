@@ -1,3 +1,10 @@
+# How to run
+
+- Get Node.js for your pc
+- Go to visual studio code and open a terminal
+- CD to the travel-site folder
+- Use npm run dev to start server
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
