@@ -28,35 +28,24 @@ function Footer() {
       <div className="footer-links">
         <div className="footer-link-wrapper">
           <div className="footer-link-items">
-            <h2>About Us</h2>
-            <Link to="/sign-up">How it works</Link>
-            <Link to="/">Testimonials</Link>
-            <Link to="/">Careers</Link>
-            <Link to="/">Investors</Link>
-            <Link to="/">Terms of Service</Link>
+            <h2>About</h2>
+            <Link to="/">About Us</Link>
+            <Link to="/">Features</Link>
+            <Link to="/">News & Blogs</Link>
           </div>
           <div className="footer-link-items">
-            <h2>Contact Us</h2>
-            <Link to="/">Contact</Link>
-            <Link to="/">Support</Link>
-            <Link to="/">Destinations</Link>
-            <Link to="/">Sponsorships</Link>
+            <h2>Contact</h2>
+            <Link to="/">Instagram</Link>
+            <Link to="/">Twitter</Link>
+            <Link to="/">Facebook</Link>
           </div>
         </div>
         <div className="footer-link-wrapper">
           <div className="footer-link-items">
-            <h2>Videos</h2>
-            <Link to="/">Submit Video</Link>
-            <Link to="/">Ambassadors</Link>
-            <Link to="/">Agency</Link>
-            <Link to="/">Influencer</Link>
-          </div>
-          <div className="footer-link-items">
-            <h2>Social Media</h2>
-            <Link to="/">Instagram</Link>
-            <Link to="/">Facebook</Link>
-            <Link to="/">Youtube</Link>
-            <Link to="/">Twitter</Link>
+            <h2>Support</h2>
+            <Link to="/">FAQs</Link>
+            <Link to="/">Support Center</Link>
+            <Link to="/">Feedback</Link>
           </div>
         </div>
       </div>
@@ -64,11 +53,11 @@ function Footer() {
         <div className="social-media-wrap">
           <div className="footer-logo">
             <Link to="/" className="social-logo">
-              TRVL
-              <i className="fab fa-typo3" />
+              TouristSpotter
+              <i className="fa-solid fa-plane" />
             </Link>
           </div>
-          <small className="website-rights">TRVL © 2020</small>
+          <small className="website-rights">TouristSpotter © 2024</small>
           <div className="social-icons">
             <Link
               className="social-icon-link facebook"
