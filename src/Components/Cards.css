@@ -3,12 +3,7 @@
   background: black;
 }
 
-h1 {
-  text-align: center;
-  color: white;
-}
-
-p {
+.cards h1, .cards p {
   text-align: center;
   color: white;
 }
@@ -73,7 +68,6 @@ p {
   font-size: 12px;
   font-weight: 700;
   color: #fff;
-  background-color: #1f98f4;
   box-sizing: border-box;
 }
 
