@@ -2,11 +2,6 @@ import React from "react";
 import HeroSection from "../HeroSection";
 
 function GetStarted() {
-  const handleSearch = (query: string) => {
-    console.log("Search query:", query);
-    // Add search logic here
-  };
-
   return (
     <>
       <HeroSection
@@ -15,7 +10,6 @@ function GetStarted() {
         backgroundImage="/images/HeroSection2.png"
         showButton={false}
         showSearchBar={true}
-        onSearch={handleSearch}
       />
     </>
   );
