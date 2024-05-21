@@ -1,6 +1,7 @@
 import React from "react";
 import "./MatchCard.css";
 import SuggestionCardItem from "./SuggestionCardItem";
+import { Button } from "./Button";
 
 function MatchCard() {
   return (
@@ -33,6 +34,16 @@ function MatchCard() {
               path="/baguio-city"
             />
           </ul>
+          <div className="matchcard-btn">
+            <Button
+              className="btns--viewmore"
+              buttonStyle="btn--outline"
+              buttonSize="btn--large"
+              to="/more-spots"
+            >
+              View More
+            </Button>
+          </div>
         </div>
       </div>
     </div>

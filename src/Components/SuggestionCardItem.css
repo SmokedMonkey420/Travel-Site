@@ -1,0 +1,76 @@
+    .suggestion__cards__item {
+    display: flex;
+    margin: 20px 0;
+    width: 600px;
+    width: 100%;
+    align-content: center;
+  }
+  
+  .suggestion__cards__item__link {
+    display: flex;
+    flex: 1;
+    text-decoration: none;
+    max-width: 100%;
+  }
+  
+  .suggestion__cards__item__pic-wrap {
+    flex: 1;
+    max-width: 500px;
+    align-content: center;
+  }
+  
+  .suggestion__cards__item.alt .suggestion__cards__item__pic-wrap {
+    margin-left: 20px;
+    margin-right: 0;
+  }
+  
+  .suggestion__cards__item__img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .suggestion__cards__item__info {
+    flex: 2;
+    padding: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    display: inline;
+  }
+  
+  .suggestion__cards__item.alt .suggestion__cards__item__info {
+    justify-content: flex-end;
+  }
+  
+  .suggestion__cards__item__info h1 {
+    text-align: left;
+    font-size: 1.5rem;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+  }
+  
+  ul > li {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  ul > li:nth-child(even) .suggestion__cards__item__link {
+    flex-direction: row-reverse;
+  }
+  
+  .item-text > * {
+    display: block;
+  }
+  

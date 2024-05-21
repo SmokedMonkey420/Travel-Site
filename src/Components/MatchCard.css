@@ -24,78 +24,11 @@
   flex-direction: column;
 }
 
-.suggestion__cards__item {
-  display: flex;
-  margin: 30px 0;
-  width: 600px;/* Increased to make the items bigger */
-  width: 100%;
-  align-content: center;
-}
-
-.suggestion__cards__item__link {
-  display: flex;
-  flex: 1;
-  text-decoration: none;
-  max-width: 100%;
-}
-
-.suggestion__cards__item__pic-wrap {
-  flex: 1;
-  max-width: 500px; /* Increased from 200px to 300px */
-  align-content: center;
-}
-
-.suggestion__cards__item.alt .suggestion__cards__item__pic-wrap {
-  margin-left: 20px; /* Add left margin for alternate items */
-  margin-right: 0; /* Remove right margin for alternate items */
-}
-
-.suggestion__cards__item__img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-}
-
-.suggestion__cards__item__info {
-  flex: 2; /* Increased from 1 to 2 to give more space to text */
-  padding: 20px;
+.result__cards h1 {
   color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Center content vertically */
-  display: inline;
+  text-align: center;
 }
 
-.suggestion__cards__item.alt .suggestion__cards__item__info {
-  justify-content: flex-end; /* Justify text towards the right for alternate items */
-}
-
-.suggestion__cards__item__info h1 {
-  text-align: left; /* Align h1 to the left */
-  font-size: 1.5rem; /* Example font size, adjust as needed */
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-  width: 100%;
-}
-
-ul > li {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-ul > li:nth-child(even) .suggestion__cards__item__link {
-  flex-direction: row-reverse;
-}
-
-.item-text > * {
-  display: block;
+.btns--viewmore {
+  align-content: center;
 }
