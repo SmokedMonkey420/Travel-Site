@@ -43,15 +43,15 @@
 .hero-search {
   margin-top: 32px;
   display: flex;
-  align-items: center; /* Align items vertically */
-  background-color: rgba(255, 255, 255, 25);
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.678);
   width: 25%;
   border-radius: 25px;
 }
 
 .hero-search i {
-  fill: white;
   padding: 15px;
+  color: rgba(0, 0, 0, 0.678);
 }
 
 .hero-search input {

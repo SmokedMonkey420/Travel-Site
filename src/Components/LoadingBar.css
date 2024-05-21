@@ -1,0 +1,26 @@
+/* LoadingBar.css */
+.loading-bar {
+    margin-top: 50px;
+    width: 25%;
+    height: 15px;
+    background-color: #f3f3f3;
+    overflow: hidden;
+    position: relative;
+    border-radius: 25px;
+  }
+  
+  .loading-bar-progress {
+    width: 0;
+    height: 100%;
+    background-color: #3498db;
+    animation: loading 2s infinite;
+  }
+  
+  @keyframes loading {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 100%;
+    }
+  }

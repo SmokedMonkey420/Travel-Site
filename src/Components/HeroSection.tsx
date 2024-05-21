@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../App.css";
 import { Button } from "./Button";
 import "./HeroSection.css";
+import LoadingBar from "./LoadingBar";
 
 interface HeroSectionProps {
   title: string;
@@ -9,6 +11,7 @@ interface HeroSectionProps {
   backgroundImage: string;
   showButton?: boolean;
   showSearchBar?: boolean;
+  showLoadingBar?: boolean;
   onSearch?: (query: string) => void;
   onFileUpload?: (file: File) => void;
 }
@@ -19,11 +22,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   backgroundImage,
   showButton = true,
   showSearchBar = false,
+  showLoadingBar = false,
   onSearch,
   onFileUpload,
 }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [file, setFile] = useState<File | null>(null);
+  const navigate = useNavigate();
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
@@ -33,6 +38,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
     if (onSearch) {
       onSearch(searchQuery);
     }
+    navigate("/result", { state: { searchQuery, file } });
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -64,7 +70,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           </Button>
         </div>
       )}
-      {showSearchBar && (
+      {showSearchBar && !showLoadingBar && (
         <div className="hero-search">
           <label htmlFor="file-input">
             <i className="fa-solid fa-paperclip" />
@@ -89,6 +95,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           />
         </div>
       )}
+      {showLoadingBar && <LoadingBar />}
     </div>
   );
 };
