@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 import { Button } from "./Button";
@@ -12,8 +12,6 @@ interface HeroSectionProps {
   showButton?: boolean;
   showSearchBar?: boolean;
   showLoadingBar?: boolean;
-  onSearch?: (query: string) => void;
-  onFileUpload?: (file: File) => void;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({
@@ -23,32 +21,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   showButton = true,
   showSearchBar = false,
   showLoadingBar = false,
-  onSearch,
-  onFileUpload,
 }) => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [file, setFile] = useState<File | null>(null);
   const navigate = useNavigate();
-
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(event.target.value);
-  };
-
   const handleSearchSubmit = () => {
-    if (onSearch) {
-      onSearch(searchQuery);
-    }
-    navigate("/result", { state: { searchQuery, file } });
-  };
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files) {
-      const selectedFile = event.target.files[0];
-      setFile(selectedFile);
-      if (onFileUpload) {
-        onFileUpload(selectedFile);
-      }
-    }
+    navigate("/result");
   };
 
   return (
@@ -78,21 +54,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           <input
             type="text"
             placeholder="Upload an image or describe a place..."
-            value={searchQuery}
-            onChange={handleSearchChange}
           />
-          <label htmlFor="search-input">
-            <i
-              className="fa-solid fa-magnifying-glass"
-              onClick={handleSearchSubmit}
-            />
+          <label htmlFor="search-input" onClick={handleSearchSubmit}>
+            <i className="fa-solid fa-magnifying-glass" />
           </label>
-          <input
-            type="file"
-            id="file-input"
-            onChange={handleFileChange}
-            style={{ display: "none" }}
-          />
+          <input type="file" id="file-input" style={{ display: "none" }} />
         </div>
       )}
       {showLoadingBar && <LoadingBar />}
