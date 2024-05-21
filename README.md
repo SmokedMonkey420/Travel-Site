@@ -3,6 +3,7 @@
 - Get Node.js for your pc
 - Go to visual studio code and open a terminal
 - CD to the travel-site folder
+- Use npm i then
 - Use npm run dev to start server
 
 # React + TypeScript + Vite
