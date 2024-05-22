@@ -48,7 +48,6 @@
 
 .nav-item {
   height: 80px;
-  margin-bottom: 175px;
 }
 
 
@@ -81,6 +80,10 @@
 @media screen and (max-width: 960px) {
   .NavbarItems {
     position: relative;
+  }
+
+  .nav-item {
+    margin-bottom: 175px;
   }
 
   .nav-menu {
