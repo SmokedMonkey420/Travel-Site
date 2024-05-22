@@ -1,76 +1,97 @@
-.result__cards__item {
+  .match__cards__container {
     display: flex;
-    margin: 20px 0;
-    width: 600px;
-    width: 100%;
-    align-content: center;
+    flex-flow: column;
+    align-items: center;
+    max-width: 1120px;
+    width: 90%;
+    margin: 0 auto;
   }
   
-  .result__cards__item__link {
-    display: flex;
-    flex: 1;
-    text-decoration: none;
+  .match__cards__wrapper {
+    position: relative;
+    margin: 50px 0 45px;
+  }
+  
+  .match__cards__items {
+    margin-bottom: 24px;
+  }
+  
+  .result__cards__item__img, .search__cards__item__img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: block;
+    width: 100%;
     max-width: 100%;
-  }
-  
-  .result__cards__item__pic-wrap {
-    flex: 1;
-    max-width: 500px;
-    align-content: center;
-  }
-  
-  .result__cards__item.alt .result__cards__item__pic-wrap {
-    margin-left: 20px;
-    margin-right: 0;
-  }
-  
-  .result__cards__item__img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-  }
-  
-  .result__cards__item__info {
-    flex: 2;
-    padding: 20px;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    display: inline;
-  }
-  
-  .result__cards__item.alt .result__cards__item__info {
-    justify-content: flex-end;
-  }
-  
-  .result__cards__item__info h1 {
-    text-align: left;
-    font-size: 1.5rem;
+    height: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    transition: all 0.2s linear;
   }
 
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-    width: 100%;
-  }
-  
-  ul > li {
+  .result__cards__item__link, .search__cards__item__link {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    flex-flow: column;
+    width: 100%;
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
+    -webkit-filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
+    filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none;
+    background-color: white;
+    color: #252e48;
   }
-  
-  ul > li:nth-child(even) .result__cards__item__link {
-    flex-direction: row-reverse;
+
+  .result__cards__item__text, .search__cards__item__text {
+    color: #252e48;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  padding: 10px 10px 10px;
   }
-  
-  .item-text > * {
-    display: block;
+
+  .text__card__item {
+    position: absolute;
+  top: 0;
+  left: 0;
+  margin: 10px; /* Adjust margin as needed */
+  z-index: 1; /* Ensure text is above the image */
+  background-color: rgba(255, 255, 255, 0.7); /* Optional: Add a background color with some transparency */
+  padding: 10px; /* Optional: Add padding for better readability */
   }
-  
+
+  .result__cards__item {
+    display: flex;
+  flex: 1;
+  margin: 0 1rem;
+  border-radius: 10px;
+  }
+
+  .result__cards__item__pic-wrap, .search__cards__item__pic-wrap {
+    position: relative;
+  width: 450px;
+  min-width: 450px;
+  padding-top: 67%;
+  overflow: hidden;
+  }
+
+.match__card__items {
+  display: flex; /* Ensure the items are displayed in a row */
+  justify-content: center; /* Center the items horizontally */
+}
+
+.match__card__items > * {
+  margin-right: 465px; /* Add margin between each MatchCardItem */
+}
+
+/* Remove margin from the last item to prevent extra space */
+.match__card__items > *:last-child {
+  margin-right: 0;
+}
+
+h1 {
+  margin-top: 50px;
+}

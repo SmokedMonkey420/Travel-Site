@@ -1,15 +1,12 @@
 import React from "react";
 import "./MatchCardItem.css";
 import { Link } from "react-router-dom";
-
 interface MatchCardItemProps {
   text: string;
-  image: string; // Change type to string as we're passing URL
+  image: string;
 }
-
 const MatchCardItem: React.FC<MatchCardItemProps> = ({ text, image }) => {
   const placeholderImageUrl = "images/image2.jpg";
-
   return (
     <>
       <li className="search__cards__item">
@@ -19,33 +16,29 @@ const MatchCardItem: React.FC<MatchCardItemProps> = ({ text, image }) => {
               <img
                 className="search__cards__item__img"
                 alt="Uploaded"
-                src={image} // Use the passed image URL directly
+                src={image}
               />
             ) : (
-              <p>{text}</p>
+              <p className="text__card__item">{text}</p>
             )}
-            <h3>Your preferred tourist spot</h3>
           </figure>
+          <div className="search__cards__item__text">
+            <h3>Your preferred tourist spot</h3>
+          </div>
         </Link>
       </li>
       <li className="result__cards__item">
         <Link className="result__cards__item__link">
           <figure className="result__cards__item__pic-wrap">
-            {image ? (
-              <img
-                className="result__cards__item__img"
-                alt="Uploaded"
-                src={image} // Use the passed image URL directly
-              />
-            ) : (
-              <img
-                className="result__cards__item__img"
-                alt="Placeholder"
-                src={placeholderImageUrl}
-              />
-            )}
-            <h3>Our recommended tourist spot</h3>
+            <img
+              className="result__cards__item__img"
+              alt="Placeholder"
+              src={placeholderImageUrl}
+            />
           </figure>
+          <div className="result__cards__item__text">
+            <h3>Our best match tourist spot</h3>
+          </div>
         </Link>
       </li>
     </>

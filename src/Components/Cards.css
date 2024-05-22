@@ -59,7 +59,6 @@
 }
 
 .cards__item__pic-wrap::after {
-  content: attr(data-category);
   position: absolute;
   bottom: 0;
   margin-left: 10px;

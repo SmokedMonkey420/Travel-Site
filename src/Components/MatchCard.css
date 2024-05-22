@@ -12,6 +12,19 @@
   margin: 0 auto;
 }
 
+.match__card__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1120px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.match__card__items {
+  display: flex;
+}
+
 .suggestion__card__wrapper {
   position: relative;
   margin: 50px 0 45px;
