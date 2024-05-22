@@ -21,7 +21,7 @@ function MatchCard() {
           <ul className="match__card__items">
             <MatchCardItem
               text={submittedData ? submittedData.text : ""}
-              image={submittedData ? submittedData.imageURL : ""}
+              image={submittedData ? submittedData.image : ""}
             />
           </ul>
         </div>

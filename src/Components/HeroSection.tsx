@@ -30,7 +30,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({
     setText(event.target.value);
   };
   const handleImageChange = (event) => {
-    setImageURL(event.target.value);
+    const file = event.target.files[0];
+    const imageURL = URL.createObjectURL(file);
+    setImageURL(imageURL);
   };
   // Change the handleSearchSubmit function definition to include the event parameter
   const handleSearchSubmit = (event) => {
