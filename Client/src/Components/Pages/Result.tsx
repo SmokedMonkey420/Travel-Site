@@ -1,7 +1,5 @@
-import React from "react";
 import HeroSection from "../HeroSection";
 import MatchCard from "../MatchCard";
-import Footer from "../Footer";
 
 function Result() {
   return (
@@ -15,7 +13,6 @@ function Result() {
         showLoadingBar={true}
       />
       <MatchCard />
-      <Footer />
     </>
   );
 }

@@ -1,0 +1,11 @@
+.map-container {
+    width: 100%;
+    max-width: 800px;  /* Limit the maximum width of the map container */
+    margin: 0 auto;    /* Center the map container */
+    padding: 10px;     /* Optional: Add some padding around the container */
+    background-color: rgba(255, 255, 255, 0.8); /* Optional: semi-transparent background */
+    border-radius: 12px;  /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Soft shadow around the container */
+    z-index: 1;
+  }
+  

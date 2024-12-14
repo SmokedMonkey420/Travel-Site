@@ -1,8 +1,6 @@
-import React from "react";
 import "../../App.css";
 import HeroSection from "../HeroSection";
-import Cards from "../Cards";
-import Footer from "../Footer";
+import Popup from "../Popup";
 
 function Home() {
   return (
@@ -10,10 +8,9 @@ function Home() {
       <HeroSection
         title="TouristSpotter"
         subtitle="A Tourist Destination Recommender System"
-        backgroundImage="/images/HeroSection1.png"
+        backgroundImage="/images/HeroSection.png"
       />
-      <Cards />
-      <Footer />
+      <Popup />
     </>
   );
 }

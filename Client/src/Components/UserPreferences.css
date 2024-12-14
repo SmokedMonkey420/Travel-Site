@@ -1,0 +1,22 @@
+.user-preference-container {
+    background-color: white;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.8) inset;
+    flex-shrink: 0;
+}
+
+.user-preference-container h2 {
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.preference-list li {
+    background-color: #FFA500;
+    margin-top: 10px; 
+    color: #734A00;
+    list-style-type: none;
+    padding: 5px;
+    border-radius: 5px;
+}

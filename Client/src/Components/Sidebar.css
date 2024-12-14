@@ -1,0 +1,119 @@
+/* Sidebar container */
+.sidebar {
+    width: 80px; /* Initially collapsed */
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #131313;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s ease;
+  }
+  
+  /* Expanded sidebar */
+  .sidebar:not(.collapsed) {
+    width: 256px;
+  }
+  
+  /* Sidebar Header */
+  .sidebar-header {
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+  
+  .sidebar-header .logo {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .sidebar-header .collapse-btn {
+    background: none;
+    color: white;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  /* Menu Items */
+  .sidebar-menu {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sidebar-menu ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sidebar-menu li {
+    margin: 10px 0;
+  }
+  
+  .sidebar-menu a {
+    color: #ffff;
+    text-decoration: none;
+    font-size: 18px;
+  }
+  
+  .sidebar-menu a:hover {
+    color: #ff7f50;
+  }
+  
+  /* Avatar */
+  .avatar {
+    text-align: center;
+    padding: 16px;
+  }
+  
+  .avatar img {
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+  }
+  
+  /* When sidebar is collapsed, hide avatar and menu items */
+  .sidebar.collapsed .avatar img {
+    display: none;
+  }
+  
+  .sidebar.collapsed .sidebar-menu a {
+    display: none;
+  }
+  
+  .ant-menu {
+    background-color: #121212;
+  }
+
+  .nav-text {
+    color: white;
+  }
+
+  .ant-menu-title-content {
+    color: white;
+  }
+
+  .search-bar {
+    position: absolute;
+    top: 50px;
+    left: 256px;
+    width: 80%;
+    background-color: #f2f2f2;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    z-index: 10;
+    transition: all 0.3s ease;
+  }
+  
+  .search-bar input,
+  .search-bar button {
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }

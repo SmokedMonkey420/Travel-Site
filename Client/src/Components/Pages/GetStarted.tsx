@@ -1,16 +1,18 @@
-import React from "react";
 import HeroSection from "../HeroSection";
+import UserPreferences from "../UserPreferences";
+import RecommendedDestinations from "../RecommendedDestinations";
+import Map from "../MindanaoMap";
 
 function GetStarted() {
   return (
     <>
       <HeroSection
-        title="Where to?"
-        subtitle="Let us know where you want to go, and we’ll recommend alternatives"
-        backgroundImage="/images/HeroSection2.png"
+        backgroundImage="/images/HeroSection.png"
         showButton={false}
         showSearchBar={true}
-      />
+      >
+        <UserPreferences /> <RecommendedDestinations /> <Map />
+      </HeroSection>
     </>
   );
 }

@@ -1,0 +1,6 @@
+.recommendation-container {
+    flex: 0; /* Allow it to grow if needed */
+    padding: 1rem;
+    box-sizing: border-box;
+    background-color: white;
+}

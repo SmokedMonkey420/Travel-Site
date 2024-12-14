@@ -1,23 +1,21 @@
 .hero-container {
-  height: 100vh;
-  width: 100%;
+  height: 100vh; /* Full viewport height */
+  width: 100%; /* Full width */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
-  overflow: hidden;
-  margin-top: -80px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-size: cover; /* Ensures the background image covers the container */
+  background-position: center center; /* Centers the background image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  background-attachment: fixed; /* Optional: makes the background image fixed during scrolling */
 }
 
 .hero-container > h1,
 .hero-container > p {
   color: #fff;
   position: relative;
-  z-index: 1;
+  z-index: 0;
 }
 
 .hero-container > h1 {
@@ -40,75 +38,7 @@
   margin: 6px;
 }
 
-.hero-search {
-  margin-top: 32px;
+.main-ui {
   display: flex;
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.678);
-  width: 25%;
-  border-radius: 25px;
-}
-
-.hero-search i {
-  padding: 15px;
-  color: rgba(0, 0, 0, 0.678);
-}
-
-.hero-search input {
-  padding: 10px;
-  font-size: 16px;
-  background-color: transparent;
-  border: none;
-  border-radius: 4px;
-  margin-right: 8px;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  width: 100%;
-}
-
-.hero-search input {
-  outline: none !important;
-  cursor: pointer;
-}
-
-.search-icon {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-.file-icon {
-  cursor: pointer;
-}
-
-@media screen and (max-width: 960px) {
-  .hero-container > h1 {
-    font-size: 70px;
-    margin-top: -150px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .hero-container > h1 {
-    font-size: 50px;
-    margin-top: -100px;
-  }
-
-  .hero-container > p {
-    font-size: 30px;
-  }
-
-  .btn-mobile {
-    display: block;
-    text-decoration: none;
-  }
-
-  .btn {
-    width: 100%;
-  }
+  gap: 2rem;
 }

@@ -1,18 +1,15 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import "../App.css";
+import React, { Children } from "react";
 import { Button } from "./Button";
 import "./HeroSection.css";
-import LoadingBar from "./LoadingBar";
 
 interface HeroSectionProps {
-  title: string;
-  subtitle: string;
+  title?: string; // Make title optional
+  subtitle?: string; // Make subtitle optional
   backgroundImage: string;
   showButton?: boolean;
-  showSearchBar?: boolean;
-  showLoadingBar?: boolean;
+  buttonText?: string;
+  buttonLink?: string;
+  children?: React.ReactNode;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({
@@ -20,69 +17,33 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   subtitle,
   backgroundImage,
   showButton = true,
-  showSearchBar = false,
-  showLoadingBar = false,
+  buttonText = "GET STARTED",
+  buttonLink = "/get-started",
+  children,
 }) => {
-  const [text, setText] = useState("");
-  const [imageURL, setImageURL] = useState("");
-  const navigate = useNavigate();
-  const handleTextChange = (event) => {
-    setText(event.target.value);
-  };
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    const imageURL = URL.createObjectURL(file);
-    setImageURL(imageURL);
-  };
-  // Change the handleSearchSubmit function definition to include the event parameter
-  const handleSearchSubmit = (event) => {
-    event.preventDefault(); // Ensure event.preventDefault() is called
-    // Store submitted data in localStorage
-    localStorage.setItem("submittedData", JSON.stringify({ text, imageURL }));
-    // Navigate to the submitted page
-    navigate("/result");
-  };
   return (
     <div
       className="hero-container"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-      <h1>{title}</h1>
-      <p>{subtitle}</p>
+      {/* Conditionally render title and subtitle */}
+      {title && <h1>{title}</h1>}
+      {subtitle && <p>{subtitle}</p>}
+
+      {/* Optional 'GET STARTED' button */}
       {showButton && (
         <div className="hero-btns">
           <Button
             className="btns"
             buttonStyle="btn--outline"
             buttonSize="btn--large"
-            to="/get-started"
+            to={buttonLink}
           >
-            GET STARTED
+            {buttonText}
           </Button>
         </div>
       )}
-      {showSearchBar && !showLoadingBar && (
-        <div className="hero-search">
-          <label htmlFor="file-input">
-            <i className="fa-solid fa-paperclip" />
-          </label>
-          <input
-            type="text"
-            placeholder="Upload an image or describe a place..."
-            onChange={handleTextChange}
-          />
-          <label htmlFor="search-input" onClick={handleSearchSubmit}>
-            <i className="fa-solid fa-magnifying-glass" />
-          </label>
-          <input
-            type="file"
-            id="file-input"
-            style={{ display: "none" }}
-            onChange={handleImageChange}
-          />
-        </div>
-      )}
-      {showLoadingBar && <LoadingBar />}
+      <div className="main-ui">{children}</div>
     </div>
   );
 };
