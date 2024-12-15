@@ -3,4 +3,19 @@
     padding: 1rem;
     box-sizing: border-box;
     background-color: white;
+    border-radius: 10px;
+    max-height: 400px; /* Set a fixed height or max-height */
+    overflow-y: auto;  /* Enable vertical scrolling when content overflows */
+    padding: 10px;
+    border: 1px solid #ddd; /* Optional: Add a border */
+    min-width: 20vw;
 }
+
+.recommendation-list {
+    display: flex;
+    flex-direction: column; /* Make the list vertical */
+  }
+  
+  .recommendation-item {
+    margin-bottom: 10px; /* Add some space between items */
+  }

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { GoogleMap, LoadScript, Marker, Polygon } from "@react-google-maps/api";
 import "./MindanaoMap.css";
+const googleapi = import.meta.env.VITE_API_KEY;
 
 const containerStyle = {
   width: "100%",
@@ -28,12 +29,10 @@ const RecommendedDestinations: React.FC = () => {
 
   return (
     <div className="map-container">
-      <LoadScript
-        googleMapsApiKey="AIzaSyD58dlQEjHo84czShQnJeu61kVmmOPLUG0"
-        onLoad={handleLoad}
-      >
+      <LoadScript googleMapsApiKey={googleapi} onLoad={handleLoad}>
         {mapLoaded ? (
           <GoogleMap
+            id="google-map"
             mapContainerStyle={containerStyle}
             center={center}
             zoom={6}

@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+Server/models/*.safetensors
+Server/models/*.h5
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

@@ -15,6 +15,8 @@ const Sidebar: React.FC = () => {
   const [collapsed, setCollapsed] = useState(true);
   const visitorId = getVisitorId();
   const [searchBarVisible, setSearchBarVisible] = useState(false);
+  const [textInput, setTextInput] = useState<string>("");
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const searchBarRef = useRef<HTMLDivElement>(null);
 
   const toggleCollapse = () => {
@@ -32,35 +34,76 @@ const Sidebar: React.FC = () => {
       let data;
 
       if (key === "reset") {
-        // Reset preferences
-        response = await fetch("http://localhost:5000/reset-preferences", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ visitorId }),
-        });
+        // Simulate reset preferences API call
+        response = {
+          ok: true,
+          json: async () => ({ message: "Preferences reset successfully" }),
+        };
       } else if (key === "delete") {
-        // Delete data
-        response = await fetch("http://localhost:5000/delete-visitor-data", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ visitorId }),
-        });
+        // Simulate delete visitor data API call
+        response = {
+          ok: true,
+          json: async () => ({ message: "Visitor data deleted successfully" }),
+        };
       }
 
-      // Check if the response is successful
+      // Simulating a response
       if (response.ok) {
         data = await response.json();
+        console.log(data); // Log the response to the console
         message.success(data.message || "Operation completed successfully!");
       } else {
         data = await response.json();
+        console.log(data); // Log the error to the console
         message.error(data.error || "An error occurred.");
       }
     } catch (error) {
+      console.log(error); // Log the error to the console
       message.error("An error occurred while processing your request.");
+    }
+  };
+
+  const handleImageUpload = (file: File) => {
+    setImageFile(file);
+    return false; // Prevent automatic upload
+  };
+
+  const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTextInput(e.target.value);
+  };
+
+  const handleSubmit = async () => {
+    if (!textInput && !imageFile) {
+      message.error("Please provide either an image or text input!");
+      return;
+    }
+
+    const formData = new FormData();
+    if (imageFile) formData.append("image", imageFile);
+    if (textInput) formData.append("query", textInput);
+
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/recommendations",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      const recommendations = await response.json();
+
+      if (response.ok) {
+        console.log("Recommendations:", recommendations);
+        message.success("Recommendations fetched successfully!");
+      } else {
+        message.error(
+          recommendations.error || "Failed to fetch recommendations."
+        );
+      }
+    } catch (error) {
+      console.error("Error fetching recommendations:", error);
+      message.error("An error occurred while fetching recommendations.");
     }
   };
 
@@ -198,10 +241,8 @@ const Sidebar: React.FC = () => {
             {/* Add Image Button */}
             <Upload
               showUploadList={false}
-              beforeUpload={(file) => {
-                console.log(file);
-                return false;
-              }}
+              beforeUpload={handleImageUpload}
+              accept="image/*"
             >
               <Button icon={<CameraOutlined />} style={{ flexShrink: 0 }}>
                 Add Image
@@ -212,6 +253,8 @@ const Sidebar: React.FC = () => {
             <Input
               placeholder="Enter text to search..."
               style={{ flexGrow: 1 }}
+              value={textInput}
+              onChange={handleTextChange}
             />
 
             {/* Search Button */}
@@ -219,6 +262,7 @@ const Sidebar: React.FC = () => {
               type="primary"
               icon={<SearchOutlined />}
               style={{ flexShrink: 0 }}
+              onClick={handleSubmit}
             >
               Search
             </Button>

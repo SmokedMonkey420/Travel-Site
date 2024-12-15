@@ -4,6 +4,7 @@
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.8) inset;
     flex-shrink: 0;
+    max-height: 60vh;
 }
 
 .user-preference-container h2 {

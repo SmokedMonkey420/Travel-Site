@@ -41,4 +41,5 @@
 .main-ui {
   display: flex;
   gap: 2rem;
+  height: 500px;
 }

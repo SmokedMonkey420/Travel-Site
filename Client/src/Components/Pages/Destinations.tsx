@@ -9,7 +9,9 @@ const DestinationsPage = () => {
   useEffect(() => {
     const fetchSpots = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/destinations"); // Replace with your API endpoint
+        const response = await fetch(
+          "http://localhost:5000/api/destinations-gallery"
+        ); // Replace with your API endpoint
         const data = await response.json();
         setSpots(data);
       } catch (error) {
