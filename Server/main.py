@@ -19,70 +19,6 @@ db = client['tourist_app_db']
 collection = db['tourist_spots']
 visitor_collection = db['visitor_data']
 
-resnet_model = load_model(r'C:\Users\Cian\Documents\Coding\Travel-Site\Server\models\resnet_tourist_spots.h5')  # Your ResNet model
-
-# Load BERT model and tokenizer
-tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-bert_model = BertModel.from_pretrained('bert-base-uncased')
-
-def get_resnet_embedding(image_array):
-    model = load_model(r"C:\Users\Cian\Documents\Coding\Travel-Site\Server\models\resnet_tourist_spots.h5")
-    embedding = model.predict(image_array)
-    return embedding
-
-def get_bert_embedding(text):
-    tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-    model = BertModel.from_pretrained('bert-base-uncased')
-    tokens = tokenizer(text, return_tensors="pt", padding=True, truncation=True, max_length=512)
-    with torch.no_grad():
-        outputs = model(**tokens)
-    embedding = outputs.last_hidden_state.mean(dim=1).numpy()
-    return embedding
-
-@app.route('/recommend', methods=['POST'])
-def recommend():
-    try:
-        # Check if an image is provided
-        if 'image' not in request.files:
-            return jsonify({"error": "No image file provided."}), 400
-        
-        # Get the image from the request
-        file = request.files['image']
-        
-        # Read the image file as a byte stream
-        img = Image.open(file.stream)
-        
-        # Preprocess the image to the format your model expects (for ResNet)
-        img = img.resize((224, 224))  # Resize the image to the expected input size
-        img_array = np.array(img)  # Convert the image to a numpy array
-        img_array = np.expand_dims(img_array, axis=0)  # Add batch dimension
-        img_array = img_array / 255.0  # Normalize the image (if required by your model)
-
-        # Make a prediction using the already loaded ResNet model
-        predictions = resnet_model.predict(img_array)
-        
-        # Get the predicted class (category)
-        predicted_class = np.argmax(predictions, axis=1)[0]
-        
-        # Convert the predicted class to a native Python int
-        predicted_class = int(predicted_class)
-        
-        # Map the predicted class index to a tourist spot
-        tourist_spot = collection.find_one({"category": predicted_class})  # Assuming 'category' maps to the predicted class
-        
-        if tourist_spot:
-            return jsonify({
-                "predicted_class": predicted_class,
-                "spot": tourist_spot
-            })
-        else:
-            return jsonify({"error": "No matching tourist spot found."}), 404
-
-    except Exception as e:
-        print(f"Error: {e}")
-        return jsonify({"error": str(e)}), 500
-
-
 @app.route('/api/destinations-gallery', methods=['GET'])
 def get_destinations():
     spots = list(collection.find({}, {"_id": 0}))  # Exclude MongoDB ID
@@ -173,7 +109,6 @@ def reset_preferences():
     except Exception as e:
         print(f"Error: {e}")
         return jsonify({"error": str(e)}), 500
-
 
 @app.route('/delete-visitor-data', methods=['POST'])
 def delete_visitor_data():
