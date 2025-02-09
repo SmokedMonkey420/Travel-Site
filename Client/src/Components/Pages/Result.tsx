@@ -1,5 +1,4 @@
 import HeroSection from "../HeroSection";
-import MatchCard from "../MatchCard";
 
 function Result() {
   return (

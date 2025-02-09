@@ -7,9 +7,6 @@ from flask_cors import CORS
 from pymongo import MongoClient
 from bson import ObjectId
 from tensorflow.keras.models import load_model # type: ignore # Type: ignore
-from transformers import BertTokenizer, BertModel
-from sklearn.metrics.pairwise import cosine_similarity
-from PIL import Image
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes

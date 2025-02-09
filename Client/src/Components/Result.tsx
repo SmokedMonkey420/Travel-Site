@@ -1,6 +1,5 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import MatchCardItem from "./MatchCardItem";
 
 const Result: React.FC = () => {
   const location = useLocation();
