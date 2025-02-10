@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Menu, Divider, Button, Dropdown, message, Input, Upload } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   SearchOutlined,
   CameraOutlined,
@@ -18,9 +18,14 @@ const Sidebar: React.FC = () => {
   const [textInput, setTextInput] = useState<string>("");
   const [imageFile, setImageFile] = useState<File | null>(null);
   const searchBarRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   const toggleCollapse = () => {
     setCollapsed(!collapsed);
+  };
+
+  const handleTitleClick = () => {
+    navigate("/home");
   };
 
   const handleClick = async (key: string) => {
@@ -28,44 +33,37 @@ const Sidebar: React.FC = () => {
       message.error("Visitor ID is missing!");
       return;
     }
-
     try {
       let response;
-      let data;
-
       if (key === "reset") {
-        // Simulate reset preferences API call
         response = {
           ok: true,
           json: async () => ({ message: "Preferences reset successfully" }),
         };
       } else if (key === "delete") {
-        // Simulate delete visitor data API call
         response = {
           ok: true,
           json: async () => ({ message: "Visitor data deleted successfully" }),
         };
       }
-
-      // Simulating a response
       if (response.ok) {
-        data = await response.json();
-        console.log(data); // Log the response to the console
+        const data = await response.json();
+        console.log(data);
         message.success(data.message || "Operation completed successfully!");
       } else {
-        data = await response.json();
-        console.log(data); // Log the error to the console
+        const data = await response.json();
+        console.log(data);
         message.error(data.error || "An error occurred.");
       }
     } catch (error) {
-      console.log(error); // Log the error to the console
+      console.log(error);
       message.error("An error occurred while processing your request.");
     }
   };
 
   const handleImageUpload = (file: File) => {
     setImageFile(file);
-    return false; // Prevent automatic upload
+    return false;
   };
 
   const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -77,7 +75,6 @@ const Sidebar: React.FC = () => {
       message.error("Please provide either an image or text input!");
       return;
     }
-
     const formData = new FormData();
     if (imageFile) formData.append("image", imageFile);
     if (textInput) formData.append("query", textInput);
@@ -90,9 +87,7 @@ const Sidebar: React.FC = () => {
           body: formData,
         }
       );
-
       const recommendations = await response.json();
-
       if (response.ok) {
         console.log("Recommendations:", recommendations);
         message.success("Recommendations fetched successfully!");
@@ -107,18 +102,15 @@ const Sidebar: React.FC = () => {
     }
   };
 
-  const userMenu = (
-    <Menu onClick={handleClick}>
-      <Menu.Item key="reset">Reset Preferences</Menu.Item>
-      <Menu.Item key="delete">Delete Data</Menu.Item>
-    </Menu>
-  );
+  const userMenuItems = [
+    { key: "reset", label: "Reset Preferences" },
+    { key: "delete", label: "Delete Data" },
+  ];
 
   const handleSearchBarToggle = () => {
     setSearchBarVisible(!searchBarVisible);
   };
 
-  // Close search bar on outside click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -152,7 +144,6 @@ const Sidebar: React.FC = () => {
         color: "white",
       }}
     >
-      {/* Header with Logo, Collapse Button, and Avatar */}
       <div
         style={{
           padding: "16px",
@@ -168,7 +159,9 @@ const Sidebar: React.FC = () => {
               textAlign: "center",
               transition: "opacity 0.3s ease",
               flexGrow: 1,
+              cursor: "pointer",
             }}
+            onClick={handleTitleClick}
           >
             <i className="fa-solid fa-plane" /> Tourist Spotter
           </div>
@@ -185,15 +178,9 @@ const Sidebar: React.FC = () => {
           onClick={toggleCollapse}
         />
       </div>
-
       <Divider style={{ margin: 0 }} />
-
-      {/* Menu items */}
       <Menu
-        style={{
-          flex: 1,
-          borderRight: 0,
-        }}
+        style={{ flex: 1, borderRight: 0 }}
         mode="inline"
         inlineCollapsed={collapsed}
         selectedKeys={[]}
@@ -212,8 +199,6 @@ const Sidebar: React.FC = () => {
           </Link>
         </Menu.Item>
       </Menu>
-
-      {/* Search Bar Popup */}
       {searchBarVisible && (
         <div
           className="search-bar"
@@ -238,7 +223,6 @@ const Sidebar: React.FC = () => {
               gap: "10px",
             }}
           >
-            {/* Add Image Button */}
             <Upload
               showUploadList={false}
               beforeUpload={handleImageUpload}
@@ -248,16 +232,12 @@ const Sidebar: React.FC = () => {
                 Add Image
               </Button>
             </Upload>
-
-            {/* Search Input */}
             <Input
               placeholder="Enter text to search..."
               style={{ flexGrow: 1 }}
               value={textInput}
               onChange={handleTextChange}
             />
-
-            {/* Search Button */}
             <Button
               type="primary"
               icon={<SearchOutlined />}
@@ -269,10 +249,8 @@ const Sidebar: React.FC = () => {
           </div>
         </div>
       )}
-
-      {/* User Avatar with Dropdown */}
       <div style={{ padding: "16px", textAlign: "center" }}>
-        <Dropdown overlay={userMenu} trigger={["click"]}>
+        <Dropdown menu={{ items: userMenuItems }} trigger={["click"]}>
           <UserOutlined
             style={{ color: "#fff", fontSize: "24px", cursor: "pointer" }}
           />

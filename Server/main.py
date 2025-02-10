@@ -134,29 +134,6 @@ def get_random_destinations():
     random.shuffle(spots)  # Shuffle the list to return random destinations
     # Return a limited number of random spots (e.g., 5)
     return jsonify(spots[:5])
-    search_query = request.args.get('query', '')
-    
-    if not search_query:
-        return jsonify({"error": "No search query provided."}), 400
-
-    # Get the text embedding for the search query
-    query_embedding = get_bert_embedding(search_query)
-
-    # Query MongoDB for destinations with their embeddings
-    all_destinations = list(collection.find({}, {"_id": 0, "Name": 1, "Caption": 1, "Embedding": 1}))
-
-    # Calculate similarity between the query embedding and stored embeddings
-    similarities = []
-    for destination in all_destinations:
-        similarity = cosine_similarity(query_embedding, destination['Embedding'])
-        similarities.append((destination, similarity))
-
-    # Sort destinations by similarity
-    sorted_destinations = sorted(similarities, key=lambda x: x[1], reverse=True)
-
-    # Return the top 5 matching destinations
-    top_destinations = [dest[0] for dest in sorted_destinations[:5]]
-    return jsonify(top_destinations)
 
 if __name__ == "__main__":
     app.run(debug=True, port="5000")

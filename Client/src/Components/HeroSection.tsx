@@ -18,7 +18,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   backgroundImage,
   showButton = true,
   buttonText = "GET STARTED",
-  buttonLink = "/get-started",
+  buttonLink = "/home",
   children,
 }) => {
   return (

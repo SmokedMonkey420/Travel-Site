@@ -1,18 +1,16 @@
+import "../../App.css";
 import HeroSection from "../HeroSection";
-import UserPreferences from "../UserPreferences";
-import RecommendedDestinations from "../RecommendedDestinations";
-import Map from "../MindanaoMap";
+import Popup from "../Popup";
 
 function GetStarted() {
   return (
     <>
       <HeroSection
+        title="TouristSpotter"
+        subtitle="A Tourist Destination Recommender System"
         backgroundImage="/images/HeroSection.png"
-        showButton={false}
-        showSearchBar={true}
-      >
-        <UserPreferences /> <RecommendedDestinations /> <Map />
-      </HeroSection>
+      />
+      <Popup />
     </>
   );
 }
