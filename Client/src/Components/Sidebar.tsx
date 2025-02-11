@@ -1,5 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Menu, Divider, Button, Dropdown, message, Input, Upload } from "antd";
+import {
+  Menu,
+  Divider,
+  Button,
+  Dropdown,
+  message,
+  Input,
+  Upload,
+  List,
+} from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import {
   SearchOutlined,
@@ -11,13 +20,14 @@ import {
 import { getVisitorId } from "../utils/visitor";
 import "./Sidebar.css";
 
-const Sidebar: React.FC = () => {
+const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(true);
   const visitorId = getVisitorId();
   const [searchBarVisible, setSearchBarVisible] = useState(false);
-  const [textInput, setTextInput] = useState<string>("");
-  const [imageFile, setImageFile] = useState<File | null>(null);
-  const searchBarRef = useRef<HTMLDivElement>(null);
+  const [textInput, setTextInput] = useState("");
+  const [imageFile, setImageFile] = useState(null);
+  const [recommendations, setRecommendations] = useState([]);
+  const searchBarRef = useRef(null);
   const navigate = useNavigate();
 
   const toggleCollapse = () => {
@@ -28,45 +38,12 @@ const Sidebar: React.FC = () => {
     navigate("/home");
   };
 
-  const handleClick = async (key: string) => {
-    if (!visitorId) {
-      message.error("Visitor ID is missing!");
-      return;
-    }
-    try {
-      let response;
-      if (key === "reset") {
-        response = {
-          ok: true,
-          json: async () => ({ message: "Preferences reset successfully" }),
-        };
-      } else if (key === "delete") {
-        response = {
-          ok: true,
-          json: async () => ({ message: "Visitor data deleted successfully" }),
-        };
-      }
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-        message.success(data.message || "Operation completed successfully!");
-      } else {
-        const data = await response.json();
-        console.log(data);
-        message.error(data.error || "An error occurred.");
-      }
-    } catch (error) {
-      console.log(error);
-      message.error("An error occurred while processing your request.");
-    }
-  };
-
-  const handleImageUpload = (file: File) => {
+  const handleImageUpload = (file) => {
     setImageFile(file);
     return false;
   };
 
-  const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleTextChange = (e) => {
     setTextInput(e.target.value);
   };
 
@@ -75,6 +52,7 @@ const Sidebar: React.FC = () => {
       message.error("Please provide either an image or text input!");
       return;
     }
+
     const formData = new FormData();
     if (imageFile) formData.append("image", imageFile);
     if (textInput) formData.append("query", textInput);
@@ -87,15 +65,14 @@ const Sidebar: React.FC = () => {
           body: formData,
         }
       );
-      const recommendations = await response.json();
-      if (response.ok) {
-        console.log("Recommendations:", recommendations);
-        message.success("Recommendations fetched successfully!");
-      } else {
-        message.error(
-          recommendations.error || "Failed to fetch recommendations."
-        );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
+
+      const recommendations = await response.json();
+      setRecommendations(recommendations);
+      message.success("Recommendations fetched successfully!");
     } catch (error) {
       console.error("Error fetching recommendations:", error);
       message.error("An error occurred while fetching recommendations.");
@@ -112,21 +89,19 @@ const Sidebar: React.FC = () => {
   };
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = (event) => {
       if (
         searchBarRef.current &&
-        !searchBarRef.current.contains(event.target as Node)
+        !searchBarRef.current.contains(event.target)
       ) {
         setSearchBarVisible(false);
       }
     };
-
     if (searchBarVisible) {
       document.addEventListener("mousedown", handleClickOutside);
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
     }
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -249,13 +224,6 @@ const Sidebar: React.FC = () => {
           </div>
         </div>
       )}
-      <div style={{ padding: "16px", textAlign: "center" }}>
-        <Dropdown menu={{ items: userMenuItems }} trigger={["click"]}>
-          <UserOutlined
-            style={{ color: "#fff", fontSize: "24px", cursor: "pointer" }}
-          />
-        </Dropdown>
-      </div>
     </div>
   );
 };
